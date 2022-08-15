@@ -1,14 +1,20 @@
-package recofit.registration.domain;
+package recofit.registration.entity;
 
 import java.util.Date;
 
 import javax.persistence.*;
-import lombok.Data;
-import recofit.registration.RegistrationApplication;
-import recofit.registration.domain.GymRegistered;
-import recofit.registration.domain.PtProgramRegistered;
+
+import lombok.Builder;
+import lombok.Getter;
+import lombok.NoArgsConstructor;
+import lombok.Setter;
+
+import recofit.registration.vo.*;
 
 @Entity
+@NoArgsConstructor
+@Getter
+@Setter
 @Table(name = "Registration_table")
 public class Registration {
 
@@ -23,23 +29,28 @@ public class Registration {
 
     private RegistrationType regType;
 
+    @Embedded
     private PtProgram ptProgram;
+    
+    @Embedded
     private GymVoucher gymVoucher;
 
-    public Registration(Registration regstration) {
-        regDt=regstration.regDt;
-        startDt=regstration.startDt;
-        endDt=regstration.endDt;
-        registerId=regstration.registerId;
-        registerName=regstration.registerName;
-        regType=regstration.regType;
-        ptProgram=regstration.ptProgram;
-        gymVoucher=regstration.gymVoucher;
+    @Builder
+    public Registration(Date regDt, Date startDt, Date endDt, Long registerId, String registerName, RegistrationType regType, PtProgram ptProgram, GymVoucher gymVoucher) {
+        this.regDt = regDt;
+        this.startDt = startDt;
+        this.endDt = endDt;
+        this.registerId = registerId;
+        this.registerName = registerName;
+        this.regType = regType;
+        this.ptProgram = ptProgram;
+        this.gymVoucher = gymVoucher;
     }
 
     // 헬스장, PT프로그램 신규등록후에 할 작업
     @PostPersist
     public void onPostPersist() {
+/*    	
     	if(this.regType==RegistrationType.PT_PROGRAM) {
 	        PtProgramRegistered ptProgramRegistered = new PtProgramRegistered();
 	        ptProgramRegistered.setId(this.getId());
@@ -69,6 +80,7 @@ public class Registration {
 	       	
 	        gymRegistered.publishAfterCommit();
     	}
+*/    	
     }
 
     // 헬스장, PT프로그램 등록 변경 후에 할 작업
@@ -104,133 +116,4 @@ public class Registration {
         gymUpdated.publishAfterCommit();
     }
 */    
-    public static RegistrationRepository repository() {
-        RegistrationRepository registrationRepository = RegistrationApplication.applicationContext.getBean(
-            RegistrationRepository.class
-        );
-        return registrationRepository;
-    }
-
-    public void ptProgramRegistrationRequest() {}
-
-    public void gymRegistrationRequest() {}
-
-	/**
-	 * @return the id
-	 */
-	public Long getId() {
-		return id;
-	}
-	
-	/**
-	 * @return the regDt
-	 */
-	public Date getRegDt() {
-		return regDt;
-	}
-
-	/**
-	 * @param regDt the regDt to set
-	 */
-	public void setRegDt(Date regDt) {
-		this.regDt = regDt;
-	}
-
-	/**
-	 * @return the startDt
-	 */
-	public Date getStartDt() {
-		return startDt;
-	}
-
-	/**
-	 * @param startDt the startDt to set
-	 */
-	public void setStartDt(Date startDt) {
-		this.startDt = startDt;
-	}
-
-	/**
-	 * @return the endDt
-	 */
-	public Date getEndDt() {
-		return endDt;
-	}
-
-	/**
-	 * @param endDt the endDt to set
-	 */
-	public void setEndDt(Date endDt) {
-		this.endDt = endDt;
-	}
-
-	/**
-	 * @return the registerId
-	 */
-	public Long getRegisterId() {
-		return registerId;
-	}
-
-	/**
-	 * @param registerId the registerId to set
-	 */
-	public void setRegisterId(Long registerId) {
-		this.registerId = registerId;
-	}
-
-	/**
-	 * @return the registerName
-	 */
-	public String getRegisterName() {
-		return registerName;
-	}
-
-	/**
-	 * @param registerName the registerName to set
-	 */
-	public void setRegisterName(String registerName) {
-		this.registerName = registerName;
-	}
-
-	/**
-	 * @return the regType
-	 */
-	public RegistrationType getRegType() {
-		return regType;
-	}
-
-	/**
-	 * @param regType the regType to set
-	 */
-	public void setRegType(RegistrationType regType) {
-		this.regType = regType;
-	}
-
-	/**
-	 * @return the ptProgram
-	 */
-	public PtProgram getPtProgram() {
-		return ptProgram;
-	}
-
-	/**
-	 * @param ptProgram the ptProgram to set
-	 */
-	public void setPtProgram(PtProgram ptProgram) {
-		this.ptProgram = ptProgram;
-	}
-
-	/**
-	 * @return the gymVoucher
-	 */
-	public GymVoucher getGymVoucher() {
-		return gymVoucher;
-	}
-
-	/**
-	 * @param gymVoucher the gymVoucher to set
-	 */
-	public void setGymVoucher(GymVoucher gymVoucher) {
-		this.gymVoucher = gymVoucher;
-	}
 }

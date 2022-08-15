@@ -1,36 +1,10 @@
 package recofit.registration;
 
-import java.sql.Connection;
-import java.sql.ResultSet;
-import java.sql.SQLException;
-import java.sql.Statement;
-import java.util.ArrayList;
-import java.util.HashMap;
-import java.util.List;
-import java.util.stream.Stream;
-
-import recofit.registration.domain.*;
-import recofit.registration.KafkaProcessor;
-
-import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.SpringApplication;
 import org.springframework.boot.autoconfigure.SpringBootApplication;
-import org.springframework.cloud.stream.annotation.EnableBinding;
 import org.springframework.context.ApplicationContext;
-import org.springframework.context.annotation.Bean;
-import org.springframework.context.annotation.EnableAspectJAutoProxy;
-import org.springframework.hateoas.Link;
-import org.springframework.web.bind.annotation.CrossOrigin;
-import org.springframework.web.bind.annotation.PathVariable;
-import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.RequestBody;
-import org.springframework.web.bind.annotation.RequestMethod;
-import org.springframework.web.bind.annotation.RestController;
 
 @SpringBootApplication
-@RestController
-@EnableAspectJAutoProxy
-@EnableBinding(KafkaProcessor.class)
 public class RegistrationApplication {
 
 	public static ApplicationContext applicationContext;
@@ -39,19 +13,6 @@ public class RegistrationApplication {
 		applicationContext=SpringApplication.run(RegistrationApplication.class, args);
 	}
 	
-	@Autowired
-	RegistrationRepository registrationRepository;
-	
-	@RequestMapping(method = RequestMethod.POST, path="registration/")
-	public void ptProgramRegistrationRequest(@RequestBody Registration regInfo){
-
-		Registration theRegistration = new Registration(regInfo);
-		
-		registrationRepository.save(theRegistration);
-
-		return;
-	}
-
 /*	
 	@Autowired
 	PetRepository petRepository;

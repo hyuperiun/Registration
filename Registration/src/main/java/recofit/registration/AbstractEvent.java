@@ -1,7 +1,7 @@
 package recofit.registration;
 
 import recofit.registration.KafkaProcessor;
-import recofit.registration.domain.Registration;
+import recofit.registration.entity.Registration;
 
 import com.fasterxml.jackson.core.JsonProcessingException;
 import com.fasterxml.jackson.databind.ObjectMapper;

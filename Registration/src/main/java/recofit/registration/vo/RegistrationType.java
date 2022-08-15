@@ -1,4 +1,4 @@
-package recofit.registration.domain;
+package recofit.registration.vo;
 
 public enum RegistrationType {
     GYM,
