@@ -11,53 +11,5 @@ public class RegistrationApplication {
 	
 	public static void main(String[] args) {
 		applicationContext=SpringApplication.run(RegistrationApplication.class, args);
-	}
-	
-/*	
-	@Autowired
-	PetRepository petRepository;
-
-	@RequestMapping(method = RequestMethod.PUT, path="pets/{petId}/feed")
-	public String feedPet(@PathVariable(value = "petId") Long petId){
-
-		Pet thePet = petRepository.findById(petId).get();
-
-		thePet.eat();
-
-		petRepository.save(thePet);
-
-		return "맛있는 거 먹였습니다.";
-	}
-
-
-	@RequestMapping(method = RequestMethod.PUT, path="pets/{petId}/groom")
-	public String groomPet(@PathVariable(value = "petId") Long petId){
-		Pet thePet = petRepository.findById(petId).get();
-
-		if(thePet instanceof Groomable){
-			String message = ((Groomable)thePet).grooming();
-			petRepository.save(thePet);
-			return message;
-		}
-
-		return "그루밍이 불가능한 Pet 입니다";
-	}
-
-	@RequestMapping(method = RequestMethod.PUT, path="cats/{petId}/groom")
-	public String groomCat(@PathVariable(value = "petId") Long petId){
-		return groomPet(petId);
-	}
-
-
-	@RequestMapping(method = RequestMethod.PUT, path="cats/{petId}/feed")
-	public String feedCat(@PathVariable(value = "petId") Long petId){
-		return feedPet(petId);
-	}
-
-	@RequestMapping(method = RequestMethod.PUT, path="dogs/{petId}/feed")
-	public String feedDog(@PathVariable(value = "petId") Long petId){
-		return feedPet(petId);
-	}
-	*/
-
+	}	
 }

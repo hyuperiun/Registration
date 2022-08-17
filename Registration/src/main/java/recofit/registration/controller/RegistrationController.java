@@ -28,18 +28,29 @@ public class RegistrationController {
 
 //    @Autowired
 //    public Producer producer;
-/*
     @PostMapping("/new")
     public ResponseEntity<ResponseMessage> saveNewRegistration(@RequestBody RegistrationDto regDto){
+    	
         regService.saveNewRegistration(regDto);
 
         ResponseMessage responseMessage = ResponseMessage.builder()
                 .message("save Registration Information Success.")
                 .responseTime(new Date())
-                .data(null)
                 .build();
 
         return new ResponseEntity<ResponseMessage>(responseMessage, HttpStatus.OK);
     }
-*/
+    
+    @GetMapping(value="/info/{regId}")
+    public ResponseEntity<ResponseMessage> findByid(@PathVariable Long regId){
+    	RegistrationDto regDto = regService.findByid(regId);
+
+        ResponseMessage responseMessage = ResponseMessage.builder()
+                .message("Find registration By regId")
+                .responseTime(new Date())
+                .data(regDto)
+                .build();
+
+        return new ResponseEntity<ResponseMessage>(responseMessage, HttpStatus.OK);
+    }
 }

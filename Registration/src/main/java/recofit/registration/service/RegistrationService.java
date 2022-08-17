@@ -4,34 +4,18 @@ import recofit.registration.dto.*;
 import recofit.registration.entity.*;
 import recofit.registration.repository.RegistrationRepository;
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.stereotype.Component;
+import org.springframework.stereotype.Service;
 
 import java.util.ArrayList;
 import java.util.List;
 import java.util.stream.Collectors;
 
-@Component
+@Service
 public class RegistrationService {
     @Autowired
     public RegistrationRepository regRepository;
 
-    public Registration findByid(Long id){
-        Registration reg = regRepository.findByid(id);
-
-        return reg;
-    }
-    
     public void saveNewRegistration(RegistrationDto newRegDto) {
-/*    	
-        this.regDt = regDt;
-        this.startDt = startDt;
-        this.endDt = endDt;
-        this.registerId = registerId;
-        this.registerName = registerName;
-        this.regType = regType;
-        this.ptProgram = ptProgram;
-        this.gymVoucher = gymVoucher;
-*/        
     	Registration reg = Registration.builder()
     			.regDt(newRegDto.getRegDt())
     			.startDt(newRegDto.getStartDt())
@@ -39,28 +23,47 @@ public class RegistrationService {
     			.registerId(newRegDto.getRegisterId())
     			.registerName(newRegDto.getRegisterName())
     			.regType(newRegDto.getRegType())
-    			.ptProgram(newRegDto.getPtPromgram())
-    			.gymVoucher(newRegDto.getGymVoucher())
-    			.build();
-    	regRepository.save(newReg);
+    			.ptProgram(newRegDto.getPtProgram())
+    			.gymVoucher(newRegDto.getGymVoucher()).build();
+    	
+    	regRepository.save(reg);
+    	
     	return ;
     }
-/*
-    public List<RegGymDto> findAll(){
-        List<Registration> reggymList = regRepository.findAll();
 
-        List<RegGymDto> gymDtoList = reggymList.stream().map(
-                gym -> RegGymDto.builder()
-                        .gymId(gym.getGymId())
-                        .gymName(gym.getGymName())
-                        .address(gym.getAddress())
-                        .floor(gym.getFloor())
-                        .ownerId(gym.getOwnerId())
-                        .rating(gym.getRating())
-                        .build()
+    public RegistrationDto findByid(Long id){
+        Registration reg = regRepository.findByid(id);
+
+        RegistrationDto regDto = RegistrationDto.builder()
+    			.regDt(reg.getRegDt())
+    			.startDt(reg.getStartDt())
+    			.endDt(reg.getEndDt())
+    			.registerId(reg.getRegisterId())
+    			.registerName(reg.getRegisterName())
+    			.regType(reg.getRegType())
+    			.ptProgram(reg.getPtProgram())
+    			.gymVoucher(reg.getGymVoucher())
+    			.build();
+        
+        return regDto;
+    }
+
+    public List<RegistrationDto> findAll(){
+        List<Registration> regList = regRepository.findAll();
+
+        List<RegistrationDto> regDtoList = regList.stream().map(
+                registration -> RegistrationDto.builder()
+    			.regDt(registration.getRegDt())
+    			.startDt(registration.getStartDt())
+    			.endDt(registration.getEndDt())
+    			.registerId(registration.getRegisterId())
+    			.registerName(registration.getRegisterName())
+    			.regType(registration.getRegType())
+    			.ptProgram(registration.getPtProgram())
+    			.gymVoucher(registration.getGymVoucher())
+    			.build()
         ).collect(Collectors.toList());
 
-        return gymDtoList;
+        return regDtoList;
     }
-*/
 }
