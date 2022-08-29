@@ -10,6 +10,16 @@ import java.util.List;
 public interface RegistrationRepository
 	extends JpaRepository<Registration,Long>  {
     public Registration findByid(Long id);
-    public List <Registration> findAllByregisterId(Long registerId);
-    public List <Registration> findAllByregisterName(String registerName);
+    public List <Registration> findByregisterId(Long registerId);
+    public List <Registration> findByregisterName(String registerName);
+    public List <Registration> findByregisterIdAndregisterName(Long registerId, String registerName);
+
+    public List <Registration> findByPtProgram_trainerID(Long trainerID);
+    public List <Registration> findByPtProgram_trainerName(String trainerName);
+    public List <Registration> findByPtProgram_ptName(String ptName);
+    public List <Registration> findByPtProgram_trainerIDAndtrainerName(Long trainerID, String trainerName);
+
+    public List <Registration> findByGymVoucher_gymID(Long gymID);
+    public List <Registration> findByGymVoucher_gymName(String gymName);
+    public List <Registration> findByGymVoucher_gymIDAndgymName(Long gymID, String gymName);
 }

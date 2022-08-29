@@ -47,7 +47,7 @@ public class RegistrationService {
         
         return regDto;
     }
-
+ 
     public List<RegistrationDto> findAll(){
         List<Registration> regList = regRepository.findAll();
 
@@ -67,8 +67,8 @@ public class RegistrationService {
         return regDtoList;
     }
     
-    public List<RegistrationDto> findAllByRegisterId(Long regsterID){
-        List<Registration> regList = regRepository.findAllByregisterId(regsterID);
+    public List<RegistrationDto> findByRegisterId(Long regsterID){
+        List<Registration> regList = regRepository.findByregisterId(regsterID);
 
         List<RegistrationDto> regDtoList = regList.stream().map(
                 registration -> RegistrationDto.builder()
@@ -86,8 +86,8 @@ public class RegistrationService {
         return regDtoList;
     }
 
-    public List<RegistrationDto> findAllByRegisterName(String regsterName){
-        List<Registration> regList = regRepository.findAllByregisterName(regsterName);
+    public List<RegistrationDto> findByRegisterName(String regsterName){
+        List<Registration> regList = regRepository.findByregisterName(regsterName);
 
         List<RegistrationDto> regDtoList = regList.stream().map(
                 registration -> RegistrationDto.builder()
@@ -103,5 +103,161 @@ public class RegistrationService {
         ).collect(Collectors.toList());
 
         return regDtoList;
+    }
+
+    public List<RegistrationDto> findByRegisterIdAndRegisterName(Long registerId, String regsterName){
+        List<Registration> regList = regRepository.findByregisterIdAndregisterName(registerId, regsterName);
+
+        List<RegistrationDto> regDtoList = regList.stream().map(
+                registration -> RegistrationDto.builder()
+    			.regDt(registration.getRegDt())
+    			.startDt(registration.getStartDt())
+    			.endDt(registration.getEndDt())
+    			.registerId(registration.getRegisterId())
+    			.registerName(registration.getRegisterName())
+    			.regType(registration.getRegType())
+    			.ptProgram(registration.getPtProgram())
+    			.gymVoucher(registration.getGymVoucher())
+    			.build()
+        ).collect(Collectors.toList());
+
+        return regDtoList;
+    }
+
+    public List<RegistrationDto> findByPtTrainerID(Long trainerID){
+        List<Registration> regList = regRepository.findByPtProgram_trainerID(trainerID);
+
+        List<RegistrationDto> regDtoList = regList.stream().map(
+                registration -> RegistrationDto.builder()
+    			.regDt(registration.getRegDt())
+    			.startDt(registration.getStartDt())
+    			.endDt(registration.getEndDt())
+    			.registerId(registration.getRegisterId())
+    			.registerName(registration.getRegisterName())
+    			.regType(registration.getRegType())
+    			.ptProgram(registration.getPtProgram())
+    			.gymVoucher(registration.getGymVoucher())
+    			.build()
+        ).collect(Collectors.toList());
+
+        return regDtoList;
+    }
+    
+    public List<RegistrationDto> findByPtTrainerName(String trainerName){
+        List<Registration> regList = regRepository.findByPtProgram_trainerName(trainerName);
+
+        List<RegistrationDto> regDtoList = regList.stream().map(
+                registration -> RegistrationDto.builder()
+    			.regDt(registration.getRegDt())
+    			.startDt(registration.getStartDt())
+    			.endDt(registration.getEndDt())
+    			.registerId(registration.getRegisterId())
+    			.registerName(registration.getRegisterName())
+    			.regType(registration.getRegType())
+    			.ptProgram(registration.getPtProgram())
+    			.gymVoucher(registration.getGymVoucher())
+    			.build()
+        ).collect(Collectors.toList());
+
+        return regDtoList;
+    }
+
+    public List<RegistrationDto> findByPtTrainerNameAndPtTrainerName(Long trainerID, String trainerName){
+        List<Registration> regList = regRepository.findByPtProgram_trainerIDAndtrainerName(trainerID, trainerName);
+
+        List<RegistrationDto> regDtoList = regList.stream().map(
+                registration -> RegistrationDto.builder()
+    			.regDt(registration.getRegDt())
+    			.startDt(registration.getStartDt())
+    			.endDt(registration.getEndDt())
+    			.registerId(registration.getRegisterId())
+    			.registerName(registration.getRegisterName())
+    			.regType(registration.getRegType())
+    			.ptProgram(registration.getPtProgram())
+    			.gymVoucher(registration.getGymVoucher())
+    			.build()
+        ).collect(Collectors.toList());
+
+        return regDtoList;
+    }
+
+    public List<RegistrationDto> findByPtName(String ptName){
+        List<Registration> regList = regRepository.findByPtProgram_ptName(ptName);
+
+        List<RegistrationDto> regDtoList = regList.stream().map(
+                registration -> RegistrationDto.builder()
+    			.regDt(registration.getRegDt())
+    			.startDt(registration.getStartDt())
+    			.endDt(registration.getEndDt())
+    			.registerId(registration.getRegisterId())
+    			.registerName(registration.getRegisterName())
+    			.regType(registration.getRegType())
+    			.ptProgram(registration.getPtProgram())
+    			.gymVoucher(registration.getGymVoucher())
+    			.build()
+        ).collect(Collectors.toList());
+
+        return regDtoList;
+    }
+
+    public List<RegistrationDto> findByGymID(Long gymID){
+        List<Registration> regList = regRepository.findByGymVoucher_gymID(gymID);
+
+        List<RegistrationDto> regDtoList = regList.stream().map(
+                registration -> RegistrationDto.builder()
+    			.regDt(registration.getRegDt())
+    			.startDt(registration.getStartDt())
+    			.endDt(registration.getEndDt())
+    			.registerId(registration.getRegisterId())
+    			.registerName(registration.getRegisterName())
+    			.regType(registration.getRegType())
+    			.ptProgram(registration.getPtProgram())
+    			.gymVoucher(registration.getGymVoucher())
+    			.build()
+        ).collect(Collectors.toList());
+
+        return regDtoList;
+    }
+    
+    public List<RegistrationDto> findByGymName(String gymName){
+        List<Registration> regList = regRepository.findByGymVoucher_gymName(gymName);
+
+        List<RegistrationDto> regDtoList = regList.stream().map(
+                registration -> RegistrationDto.builder()
+    			.regDt(registration.getRegDt())
+    			.startDt(registration.getStartDt())
+    			.endDt(registration.getEndDt())
+    			.registerId(registration.getRegisterId())
+    			.registerName(registration.getRegisterName())
+    			.regType(registration.getRegType())
+    			.ptProgram(registration.getPtProgram())
+    			.gymVoucher(registration.getGymVoucher())
+    			.build()
+        ).collect(Collectors.toList());
+
+        return regDtoList;
+    }  
+    
+    public List<RegistrationDto> findByGymIDAndGymName(Long gymID, String gymName){
+        List<Registration> regList = regRepository.findByGymVoucher_gymIDAndgymName(gymID, gymName);
+
+        List<RegistrationDto> regDtoList = regList.stream().map(
+                registration -> RegistrationDto.builder()
+    			.regDt(registration.getRegDt())
+    			.startDt(registration.getStartDt())
+    			.endDt(registration.getEndDt())
+    			.registerId(registration.getRegisterId())
+    			.registerName(registration.getRegisterName())
+    			.regType(registration.getRegType())
+    			.ptProgram(registration.getPtProgram())
+    			.gymVoucher(registration.getGymVoucher())
+    			.build()
+        ).collect(Collectors.toList());
+
+        return regDtoList;
+    }
+    
+    public void deleteRegistration(Long regId) {
+    	regRepository.deleteById(regId);
     }
 }

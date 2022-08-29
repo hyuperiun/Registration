@@ -8,6 +8,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.DeleteMapping;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.PathVariable;
@@ -57,16 +58,10 @@ public class RegistrationController {
     @GetMapping(value="/list")
     public ResponseEntity<ResponseMessage> findRegistrationByRegisterInfo(    
     		@RequestParam(value = "registerId", required = false, defaultValue = "0") Long registerId,
-    	    @RequestParam(value = "registerName", required = false, defaultValue = "null") String registerName 
+    	    @RequestParam(value = "registerName", required = false, defaultValue = "") String registerName 
     		)
     {
-    	List<RegistrationDto> regDtoList = Collections.emptyList();
-    	if(registerId > 0) {
-	        regDtoList = regService.findAllByRegisterId(registerId);
-    	}
-    	else if(registerName != "null") {
-            regDtoList = regService.findAllByRegisterName(registerName);
-    	}
+    	List<RegistrationDto> regDtoList = regService.findByRegisterIdAndRegisterName(registerId, registerName);
     	
     	ResponseMessage responseMessage = ResponseMessage.builder()
                 .message("find Registration Information Success.")
@@ -75,29 +70,18 @@ public class RegistrationController {
                 .build();
         
         return new ResponseEntity<ResponseMessage>(responseMessage, HttpStatus.OK);
-    }
+    }  
     
-    @GetMapping(value="/list")
-    public ResponseEntity<ResponseMessage> findRegistrationByTrainterInfo(    
-    	    @RequestParam(value = "trainerId", required = false, defaultValue = "0") Long trainerId,
-    	    @RequestParam(value = "trainerName", required = false, defaultValue = "null") String trainerName
-    		)
-    {
-    	List<RegistrationDto> regDtoList = Collections.emptyList();
-    	if(trainerId > 0) {
-	        regDtoList = regService.findAllByRegisterId(trainerId);
-    	}
-    	else if(trainerName != "null") {
-            regDtoList = regService.findAllByRegisterName(trainerName);
-    	}
-    	
+    @DeleteMapping("/delete/{regId}")
+    public ResponseEntity<ResponseMessage> deleteAccount(@PathVariable Long regId) {
+    	regService.deleteRegistration(regId);
+
     	ResponseMessage responseMessage = ResponseMessage.builder()
-                .message("find Registration Information Success.")
+                .message("Delete Registration Success.")
                 .responseTime(new Date())
-                .data(regDtoList)
+                .data("")
                 .build();
-        
-        return new ResponseEntity<ResponseMessage>(responseMessage, HttpStatus.OK);
-    }
-      
+
+    	return new ResponseEntity<ResponseMessage>(responseMessage, HttpStatus.OK);
+    }    
 }
