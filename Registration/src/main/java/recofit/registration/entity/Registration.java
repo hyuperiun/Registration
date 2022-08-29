@@ -24,8 +24,8 @@ public class Registration {
     private Date regDt;				// 등록일
     private Date startDt;			// 시작일
     private Date endDt;				// 종료일
-    private Long registerId;		// 등록자 ID
-    private String registerName;	// 등록자명
+    private Long registerId;		// 등록자 ID : memberID
+    private String registerName;	// 등록자명 : memberName
 
     private RegistrationType regType;
 

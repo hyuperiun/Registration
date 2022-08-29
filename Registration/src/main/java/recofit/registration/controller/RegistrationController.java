@@ -1,7 +1,5 @@
 package recofit.registration.controller;
 
-//import recofit.registration.dto.RegGymDto;
-//import recofit.registration.dto.RegPtProgramDto;
 import recofit.registration.dto.RegistrationDto;
 //import recofit.registration.kafka.Producer;
 import recofit.registration.message.ResponseMessage;
@@ -14,8 +12,10 @@ import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RequestBody;
+import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.RestController;
 
+import java.util.Collections;
 import java.util.Date;
 import java.util.List;
 
@@ -53,4 +53,51 @@ public class RegistrationController {
 
         return new ResponseEntity<ResponseMessage>(responseMessage, HttpStatus.OK);
     }
+    
+    @GetMapping(value="/list")
+    public ResponseEntity<ResponseMessage> findRegistrationByRegisterInfo(    
+    		@RequestParam(value = "registerId", required = false, defaultValue = "0") Long registerId,
+    	    @RequestParam(value = "registerName", required = false, defaultValue = "null") String registerName 
+    		)
+    {
+    	List<RegistrationDto> regDtoList = Collections.emptyList();
+    	if(registerId > 0) {
+	        regDtoList = regService.findAllByRegisterId(registerId);
+    	}
+    	else if(registerName != "null") {
+            regDtoList = regService.findAllByRegisterName(registerName);
+    	}
+    	
+    	ResponseMessage responseMessage = ResponseMessage.builder()
+                .message("find Registration Information Success.")
+                .responseTime(new Date())
+                .data(regDtoList)
+                .build();
+        
+        return new ResponseEntity<ResponseMessage>(responseMessage, HttpStatus.OK);
+    }
+    
+    @GetMapping(value="/list")
+    public ResponseEntity<ResponseMessage> findRegistrationByTrainterInfo(    
+    	    @RequestParam(value = "trainerId", required = false, defaultValue = "0") Long trainerId,
+    	    @RequestParam(value = "trainerName", required = false, defaultValue = "null") String trainerName
+    		)
+    {
+    	List<RegistrationDto> regDtoList = Collections.emptyList();
+    	if(trainerId > 0) {
+	        regDtoList = regService.findAllByRegisterId(trainerId);
+    	}
+    	else if(trainerName != "null") {
+            regDtoList = regService.findAllByRegisterName(trainerName);
+    	}
+    	
+    	ResponseMessage responseMessage = ResponseMessage.builder()
+                .message("find Registration Information Success.")
+                .responseTime(new Date())
+                .data(regDtoList)
+                .build();
+        
+        return new ResponseEntity<ResponseMessage>(responseMessage, HttpStatus.OK);
+    }
+      
 }

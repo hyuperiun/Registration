@@ -66,4 +66,42 @@ public class RegistrationService {
 
         return regDtoList;
     }
+    
+    public List<RegistrationDto> findAllByRegisterId(Long regsterID){
+        List<Registration> regList = regRepository.findAllByregisterId(regsterID);
+
+        List<RegistrationDto> regDtoList = regList.stream().map(
+                registration -> RegistrationDto.builder()
+    			.regDt(registration.getRegDt())
+    			.startDt(registration.getStartDt())
+    			.endDt(registration.getEndDt())
+    			.registerId(registration.getRegisterId())
+    			.registerName(registration.getRegisterName())
+    			.regType(registration.getRegType())
+    			.ptProgram(registration.getPtProgram())
+    			.gymVoucher(registration.getGymVoucher())
+    			.build()
+        ).collect(Collectors.toList());
+
+        return regDtoList;
+    }
+
+    public List<RegistrationDto> findAllByRegisterName(String regsterName){
+        List<Registration> regList = regRepository.findAllByregisterName(regsterName);
+
+        List<RegistrationDto> regDtoList = regList.stream().map(
+                registration -> RegistrationDto.builder()
+    			.regDt(registration.getRegDt())
+    			.startDt(registration.getStartDt())
+    			.endDt(registration.getEndDt())
+    			.registerId(registration.getRegisterId())
+    			.registerName(registration.getRegisterName())
+    			.regType(registration.getRegType())
+    			.ptProgram(registration.getPtProgram())
+    			.gymVoucher(registration.getGymVoucher())
+    			.build()
+        ).collect(Collectors.toList());
+
+        return regDtoList;
+    }
 }
