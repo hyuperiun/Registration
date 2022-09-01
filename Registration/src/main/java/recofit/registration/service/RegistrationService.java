@@ -68,7 +68,7 @@ public class RegistrationService {
     }
     
     public List<RegistrationDto> findByRegisterId(Long regsterID){
-        List<Registration> regList = regRepository.findByregisterId(regsterID);
+        List<Registration> regList = regRepository.findByRegisterId(regsterID);
 
         List<RegistrationDto> regDtoList = regList.stream().map(
                 registration -> RegistrationDto.builder()
@@ -87,7 +87,7 @@ public class RegistrationService {
     }
 
     public List<RegistrationDto> findByRegisterName(String regsterName){
-        List<Registration> regList = regRepository.findByregisterName(regsterName);
+        List<Registration> regList = regRepository.findByRegisterName(regsterName);
 
         List<RegistrationDto> regDtoList = regList.stream().map(
                 registration -> RegistrationDto.builder()
@@ -106,7 +106,7 @@ public class RegistrationService {
     }
 
     public List<RegistrationDto> findByRegisterIdAndRegisterName(Long registerId, String regsterName){
-        List<Registration> regList = regRepository.findByregisterIdAndregisterName(registerId, regsterName);
+        List<Registration> regList = regRepository.findByRegisterIdAndRegisterName(registerId, regsterName);
 
         List<RegistrationDto> regDtoList = regList.stream().map(
                 registration -> RegistrationDto.builder()
@@ -125,7 +125,7 @@ public class RegistrationService {
     }
 
     public List<RegistrationDto> findByPtTrainerID(Long trainerID){
-        List<Registration> regList = regRepository.findByPtProgram_trainerID(trainerID);
+        List<Registration> regList = regRepository.findByPtProgram_TrainerID(trainerID);
 
         List<RegistrationDto> regDtoList = regList.stream().map(
                 registration -> RegistrationDto.builder()
@@ -144,7 +144,7 @@ public class RegistrationService {
     }
     
     public List<RegistrationDto> findByPtTrainerName(String trainerName){
-        List<Registration> regList = regRepository.findByPtProgram_trainerName(trainerName);
+        List<Registration> regList = regRepository.findByPtProgram_TrainerName(trainerName);
 
         List<RegistrationDto> regDtoList = regList.stream().map(
                 registration -> RegistrationDto.builder()
@@ -163,7 +163,7 @@ public class RegistrationService {
     }
 
     public List<RegistrationDto> findByPtTrainerNameAndPtTrainerName(Long trainerID, String trainerName){
-        List<Registration> regList = regRepository.findByPtProgram_trainerIDAndtrainerName(trainerID, trainerName);
+        List<Registration> regList = regRepository.findByPtProgram_TrainerIDAndPtProgram_TrainerName(trainerID, trainerName);
 
         List<RegistrationDto> regDtoList = regList.stream().map(
                 registration -> RegistrationDto.builder()
@@ -182,7 +182,7 @@ public class RegistrationService {
     }
 
     public List<RegistrationDto> findByPtName(String ptName){
-        List<Registration> regList = regRepository.findByPtProgram_ptName(ptName);
+        List<Registration> regList = regRepository.findByPtProgram_PtName(ptName);
 
         List<RegistrationDto> regDtoList = regList.stream().map(
                 registration -> RegistrationDto.builder()
@@ -201,7 +201,7 @@ public class RegistrationService {
     }
 
     public List<RegistrationDto> findByGymID(Long gymID){
-        List<Registration> regList = regRepository.findByGymVoucher_gymID(gymID);
+        List<Registration> regList = regRepository.findByGymVoucher_GymID(gymID);
 
         List<RegistrationDto> regDtoList = regList.stream().map(
                 registration -> RegistrationDto.builder()
@@ -220,7 +220,7 @@ public class RegistrationService {
     }
     
     public List<RegistrationDto> findByGymName(String gymName){
-        List<Registration> regList = regRepository.findByGymVoucher_gymName(gymName);
+        List<Registration> regList = regRepository.findByGymVoucher_GymName(gymName);
 
         List<RegistrationDto> regDtoList = regList.stream().map(
                 registration -> RegistrationDto.builder()
@@ -239,7 +239,7 @@ public class RegistrationService {
     }  
     
     public List<RegistrationDto> findByGymIDAndGymName(Long gymID, String gymName){
-        List<Registration> regList = regRepository.findByGymVoucher_gymIDAndgymName(gymID, gymName);
+        List<Registration> regList = regRepository.findByGymVoucher_GymIDAndGymVoucher_GymName(gymID, gymName);
 
         List<RegistrationDto> regDtoList = regList.stream().map(
                 registration -> RegistrationDto.builder()

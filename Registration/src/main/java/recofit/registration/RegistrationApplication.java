@@ -8,7 +8,8 @@ import org.springframework.context.ApplicationContext;
 public class RegistrationApplication {
 
 	public static ApplicationContext applicationContext;
-	
+
+    
 	public static void main(String[] args) {
 		applicationContext=SpringApplication.run(RegistrationApplication.class, args);
 	}	

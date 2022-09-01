@@ -29,12 +29,10 @@ public class Registration {
 
     private RegistrationType regType;
 
-    //@Embedded
-    @Enumerated(EnumType.STRING)
+    @Embedded
     private PtProgram ptProgram;
     
-    //@Embedded
-    @Enumerated(EnumType.STRING)
+    @Embedded
     private GymVoucher gymVoucher;
 
     @Builder
