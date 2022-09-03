@@ -35,6 +35,7 @@ public class RegistrationService {
         Registration reg = regRepository.findByid(id);
 
         RegistrationDto regDto = RegistrationDto.builder()
+        		.id(reg.getId())
     			.regDt(reg.getRegDt())
     			.startDt(reg.getStartDt())
     			.endDt(reg.getEndDt())
@@ -53,6 +54,7 @@ public class RegistrationService {
 
         List<RegistrationDto> regDtoList = regList.stream().map(
                 registration -> RegistrationDto.builder()
+        		.id(registration.getId())                
     			.regDt(registration.getRegDt())
     			.startDt(registration.getStartDt())
     			.endDt(registration.getEndDt())
@@ -72,6 +74,7 @@ public class RegistrationService {
 
         List<RegistrationDto> regDtoList = regList.stream().map(
                 registration -> RegistrationDto.builder()
+                .id(registration.getId())
     			.regDt(registration.getRegDt())
     			.startDt(registration.getStartDt())
     			.endDt(registration.getEndDt())
@@ -91,6 +94,7 @@ public class RegistrationService {
 
         List<RegistrationDto> regDtoList = regList.stream().map(
                 registration -> RegistrationDto.builder()
+                .id(registration.getId())
     			.regDt(registration.getRegDt())
     			.startDt(registration.getStartDt())
     			.endDt(registration.getEndDt())
@@ -110,6 +114,7 @@ public class RegistrationService {
 
         List<RegistrationDto> regDtoList = regList.stream().map(
                 registration -> RegistrationDto.builder()
+                .id(registration.getId())
     			.regDt(registration.getRegDt())
     			.startDt(registration.getStartDt())
     			.endDt(registration.getEndDt())
@@ -129,6 +134,7 @@ public class RegistrationService {
 
         List<RegistrationDto> regDtoList = regList.stream().map(
                 registration -> RegistrationDto.builder()
+                .id(registration.getId())
     			.regDt(registration.getRegDt())
     			.startDt(registration.getStartDt())
     			.endDt(registration.getEndDt())
@@ -148,6 +154,7 @@ public class RegistrationService {
 
         List<RegistrationDto> regDtoList = regList.stream().map(
                 registration -> RegistrationDto.builder()
+                .id(registration.getId())
     			.regDt(registration.getRegDt())
     			.startDt(registration.getStartDt())
     			.endDt(registration.getEndDt())
@@ -167,6 +174,7 @@ public class RegistrationService {
 
         List<RegistrationDto> regDtoList = regList.stream().map(
                 registration -> RegistrationDto.builder()
+                .id(registration.getId())
     			.regDt(registration.getRegDt())
     			.startDt(registration.getStartDt())
     			.endDt(registration.getEndDt())
@@ -186,6 +194,7 @@ public class RegistrationService {
 
         List<RegistrationDto> regDtoList = regList.stream().map(
                 registration -> RegistrationDto.builder()
+                .id(registration.getId())
     			.regDt(registration.getRegDt())
     			.startDt(registration.getStartDt())
     			.endDt(registration.getEndDt())
@@ -205,6 +214,7 @@ public class RegistrationService {
 
         List<RegistrationDto> regDtoList = regList.stream().map(
                 registration -> RegistrationDto.builder()
+                .id(registration.getId())
     			.regDt(registration.getRegDt())
     			.startDt(registration.getStartDt())
     			.endDt(registration.getEndDt())
@@ -224,6 +234,7 @@ public class RegistrationService {
 
         List<RegistrationDto> regDtoList = regList.stream().map(
                 registration -> RegistrationDto.builder()
+                .id(registration.getId())
     			.regDt(registration.getRegDt())
     			.startDt(registration.getStartDt())
     			.endDt(registration.getEndDt())
@@ -243,6 +254,7 @@ public class RegistrationService {
 
         List<RegistrationDto> regDtoList = regList.stream().map(
                 registration -> RegistrationDto.builder()
+                .id(registration.getId())
     			.regDt(registration.getRegDt())
     			.startDt(registration.getStartDt())
     			.endDt(registration.getEndDt())

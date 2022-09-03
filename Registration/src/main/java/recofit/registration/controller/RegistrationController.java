@@ -21,7 +21,7 @@ import java.util.Date;
 import java.util.List;
 
 @RestController
-@RequestMapping("/registration")
+@RequestMapping("/api")
 public class RegistrationController {
 	
     @Autowired
@@ -64,7 +64,7 @@ public class RegistrationController {
     	List<RegistrationDto> regDtoList = regService.findByRegisterIdAndRegisterName(registerId, registerName);
     	
     	ResponseMessage responseMessage = ResponseMessage.builder()
-                .message("find Registration Information Success.")
+                .message("find Registration List Success.")
                 .responseTime(new Date())
                 .data(regDtoList)
                 .build();
