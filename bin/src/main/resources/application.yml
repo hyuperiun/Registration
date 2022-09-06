@@ -1,0 +1,12 @@
+spring:
+  kafka:
+    consumer:
+      bootstrap-servers: b-1.recofitkafkaclust.01fdq3.c4.kafka.ap-northeast-2.amazonaws.com:9094,b-2.recofitkafkaclust.01fdq3.c4.kafka.ap-northeast-2.amazonaws.com:9094
+      group-id: registration
+      auto-offset-reset: earliest
+      key-deserializer: org.apache.kafka.common.serialization.StringDeserializer
+      value-deserializer: org.apache.kafka.common.serialization.StringDeserializer
+    producer:
+      bootstrap-servers: b-1.recofitkafkaclust.01fdq3.c4.kafka.ap-northeast-2.amazonaws.com:9094,b-2.recofitkafkaclust.01fdq3.c4.kafka.ap-northeast-2.amazonaws.com:9094
+      key-serializer: org.apache.kafka.common.serialization.StringSerializer
+      value-serializer: org.apache.kafka.common.serialization.StringSerializer
