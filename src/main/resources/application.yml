@@ -1,12 +1,16 @@
 spring:
   kafka:
     consumer:
-      bootstrap-servers: b-1.recofitkafkaclust.01fdq3.c4.kafka.ap-northeast-2.amazonaws.com:9094,b-2.recofitkafkaclust.01fdq3.c4.kafka.ap-northeast-2.amazonaws.com:9094
-      group-id: registration
-      auto-offset-reset: earliest
+      bootstrap-servers: ec2-3-39-234-99.ap-northeast-2.compute.amazonaws.com:9092
+      group-id: registration-group
+      auto-offset-reset: latest
       key-deserializer: org.apache.kafka.common.serialization.StringDeserializer
-      value-deserializer: org.apache.kafka.common.serialization.StringDeserializer
+      value-deserializer: org.springframework.kafka.support.serializer.JsonDeserializer #      org.apache.kafka.common.serialization.StringDeserializer
+      properties:
+        spring.json.trusted.packages: "*"
+        spring.json.use.type.headers: false
+
     producer:
-      bootstrap-servers: b-1.recofitkafkaclust.01fdq3.c4.kafka.ap-northeast-2.amazonaws.com:9094,b-2.recofitkafkaclust.01fdq3.c4.kafka.ap-northeast-2.amazonaws.com:9094
+      bootstrap-servers: ec2-3-39-234-99.ap-northeast-2.compute.amazonaws.com:9092
       key-serializer: org.apache.kafka.common.serialization.StringSerializer
-      value-serializer: org.apache.kafka.common.serialization.StringSerializer
+      value-serializer: org.springframework.kafka.support.serializer.JsonSerializer #      org.apache.kafka.common.serialization.StringSerializer

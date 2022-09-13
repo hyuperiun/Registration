@@ -3,6 +3,7 @@ package recofit.registration.service;
 import recofit.registration.dto.*;
 import recofit.registration.entity.*;
 import recofit.registration.repository.RegistrationRepository;
+import recofit.registration.service.KafkaProducer;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
@@ -14,6 +15,9 @@ import java.util.stream.Collectors;
 public class RegistrationService {
     @Autowired
     public RegistrationRepository regRepository;
+    
+    @Autowired
+    public KafkaProducer producer;
 
     public void saveNewRegistration(RegistrationDto newRegDto) {
     	Registration reg = Registration.builder()
@@ -26,7 +30,11 @@ public class RegistrationService {
     			.ptProgram(newRegDto.getPtProgram())
     			.gymVoucher(newRegDto.getGymVoucher()).build();
     	
-    	regRepository.save(reg);
+    	Long newRegID = regRepository.save(reg).getId();
+    	newRegDto.setId(newRegID);
+    System.out.println(String.format("New REG DTO : %s", newRegDto.toString()));
+    
+    	producer.sendMessage(newRegDto);
     	
     	return ;
     }

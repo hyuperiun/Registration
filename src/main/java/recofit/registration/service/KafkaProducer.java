@@ -8,7 +8,7 @@ import recofit.registration.dto.*;
 
 @Service
 public class KafkaProducer {
-    private static final String TOPIC = "recofit_regstration_topic";
+    private static final String TOPIC = "recofit-regstration-training";
     private final KafkaTemplate<String, RegistrationDto> kafkaTemplate;
 
     @Autowired
