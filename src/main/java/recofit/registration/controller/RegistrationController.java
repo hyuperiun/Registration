@@ -29,7 +29,7 @@ public class RegistrationController {
 
 //    @Autowired
 //    public Producer producer;
-    @PostMapping("/new")
+    @PostMapping("/registration/new")
     public ResponseEntity<ResponseMessage> saveNewRegistration(@RequestBody RegistrationDto regDto){
     	
         regService.saveNewRegistration(regDto);
@@ -42,7 +42,7 @@ public class RegistrationController {
         return new ResponseEntity<ResponseMessage>(responseMessage, HttpStatus.OK);
     }
     
-    @GetMapping(value="/info/{regId}")
+    @GetMapping(value="/registration/info/{regId}")
     public ResponseEntity<ResponseMessage> findByid(@PathVariable Long regId){
     	RegistrationDto regDto = regService.findByid(regId);
 
@@ -55,7 +55,7 @@ public class RegistrationController {
         return new ResponseEntity<ResponseMessage>(responseMessage, HttpStatus.OK);
     }
     
-    @GetMapping(value="/list")
+    @GetMapping(value="/registration/list")
     public ResponseEntity<ResponseMessage> findRegistrationByRegisterInfo(    
     		@RequestParam(value = "registerId", required = false, defaultValue = "0") Long registerId,
     	    @RequestParam(value = "registerName", required = false, defaultValue = "") String registerName 
@@ -72,7 +72,7 @@ public class RegistrationController {
         return new ResponseEntity<ResponseMessage>(responseMessage, HttpStatus.OK);
     }  
     
-    @DeleteMapping("/delete/{regId}")
+    @DeleteMapping("/registration/delete/{regId}")
     public ResponseEntity<ResponseMessage> deleteAccount(@PathVariable Long regId) {
     	regService.deleteRegistration(regId);
 
