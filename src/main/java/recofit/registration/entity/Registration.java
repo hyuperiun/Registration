@@ -15,11 +15,11 @@ import recofit.registration.vo.*;
 @NoArgsConstructor
 @Getter
 @Setter
-@Table(name = "Registration_table")
+@Table(name = "registration")
 public class Registration {
 
     @Id
-    @GeneratedValue(strategy = GenerationType.AUTO)
+    @GeneratedValue(strategy=GenerationType.IDENTITY)
     private Long id;
     private Date regDt;				// 등록일
     private Date startDt;			// 시작일
@@ -27,6 +27,7 @@ public class Registration {
     private Long registerId;		// 등록자 ID : memberID
     private String registerName;	// 등록자명 : memberName
 
+    @Enumerated(EnumType.STRING)
     private RegistrationType regType;
 
     @Embedded
